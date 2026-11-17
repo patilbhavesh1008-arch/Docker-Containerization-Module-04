@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    image: module4-webapp:v1
+    container_name: docker-module4-app
+    ports:
+      - "8080:3000"
+    environment:
+      PORT: 3000
+      MESSAGE: "Hello from Docker Compose"
+    volumes:
+      - app-data:/app/data
+    networks:
+      - module4-net
+    restart: unless-stopped
+
+volumes:
+  app-data:
+    external: true
+
+networks:
+  module4-net:
+    external: true
